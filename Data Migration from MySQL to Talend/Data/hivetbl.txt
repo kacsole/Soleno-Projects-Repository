@@ -1,0 +1,78 @@
+CREATE TABLE studentdb.schedule (
+	 `COURSE CODE` varchar (10) NOT NULL,
+	 SECTION varchar (5) NOT NULL,
+	 TIME varchar (20) NOT NULL,
+	 DAY varchar (8) NOT NULL,
+	 ROOM varchar (10) NOT NULL,
+	 PROFESSOR varchar (30)
+)
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ','
+STORED AS TEXTFILE ;
+CREATE TABLE studentdb.student (
+	 STUDNO varchar (10) NOT NULL,
+	 LNAME varchar (20) NOT NULL,
+	 FNAME varchar (20) NOT NULL,
+	 MNAME varchar (20),
+	 PROGRAM varchar (10) NOT NULL,
+	 YEARLEVEL varchar (1) NOT NULL,
+	 NATIONALITY varchar (10),
+	 GENDER varchar (1) NOT NULL,
+)
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ','
+STORED AS TEXTFILE ;
+CREATE TABLE studentdb.studentcontact (
+	 STUDNO varchar (10) NOT NULL,
+	 `PERMANENT ADDRESS` varchar (100),
+	 `MAILING ADDRESS` varchar (100) NOT NULL,
+	 TELEPHONE varchar (30) NOT NULL,
+	 EMAIL varchar (50) NOT NULL,
+)
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ','
+STORED AS TEXTFILE ;
+CREATE TABLE studentdb.courses (
+	 `COURSE CODE` varchar (10) NOT NULL,
+	 `COURSE TITLE` varchar (50) NOT NULL,
+	 UNITS int NOT NULL,
+	 `TUITION FEE` int,
+	 `LFD FEE` int,
+)
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ','
+STORED AS TEXTFILE ;
+CREATE TABLE studentdb.subjectsenrolled (
+	 `SY TERM` varchar (11) NOT NULL,
+	 STUDNO varchar (10) NOT NULL,
+	 `COURSE CODE` varchar (10) NOT NULL,
+	 SECTION varchar (5) NOT NULL,
+	 `FINAL GRADE` varchar (5),
+	 `C GRADE` varchar (5),
+	 REMARK varchar (10)
+)
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ','
+STORED AS TEXTFILE ;
+CREATE TABLE studentdb.studentload (
+	 STUDNO varchar (10) NOT NULL,
+	 LNAME varchar (20) NOT NULL,
+	 FNAME varchar (20) NOT NULL,
+	 PROGRAM varchar (10) NOT NULL,
+	 'YEAR LEVEL' varchar (1) NOT NULL,
+	 GENDER varchar (1) NOT NULL,
+	 'COURSE CODE' varchar (10) NOT NULL,
+	 'COURSE TITLE' varchar (50) NOT NULL,
+	 SECTION varchar (5) NOT NULL,
+ 	 UNITS int NOT NULL,
+)
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ','
+STORED AS TEXTFILE ;
+LOAD DATA INPATH '/tform.csv' INTO TABLE studentdb.form;
+LOAD DATA INPATH '/tcourses.csv' INTO TABLE studentdb.courses;
+LOAD DATA INPATH '/tstudent.csv' INTO TABLE studentdb.student;
+LOAD DATA INPATH '/tschedule.csv' INTO TABLE studentdb.schedule;
+LOAD DATA INPATH '/tstudentload.csv' INTO TABLE studentdb.studentload;
+LOAD DATA INPATH '/tstudentcontact.csv' INTO TABLE studentdb.studentcontact;
+LOAD DATA INPATH '/tsubjectsenrolled.csv' INTO TABLE studentdb.subjectsenrolled;
